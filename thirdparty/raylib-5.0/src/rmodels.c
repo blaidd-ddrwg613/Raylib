@@ -1363,7 +1363,7 @@ void DrawMesh(Mesh mesh, Material material, Matrix transform)
 
     // Get a copy of current matrices to work with,
     // just in case stereo render is required, and we need to modify them
-    // NOTE: At this point the modelview matrix just contains the view matrix (camera)
+    // NOTE: At this point the modelview matrix just contains the view matrix (Camera)
     // That's because BeginMode3D() sets it and there is no model-drawing function
     // that modifies it, all use rlPushMatrix() and rlPopMatrix()
     Matrix matModel = MatrixIdentity();
@@ -1567,7 +1567,7 @@ void DrawMeshInstanced(Mesh mesh, Material material, const Matrix *transforms, i
 
     // Get a copy of current matrices to work with,
     // just in case stereo render is required, and we need to modify them
-    // NOTE: At this point the modelview matrix just contains the view matrix (camera)
+    // NOTE: At this point the modelview matrix just contains the view matrix (Camera)
     // That's because BeginMode3D() sets it and there is no model-drawing function
     // that modifies it, all use rlPushMatrix() and rlPopMatrix()
     Matrix matModel = MatrixIdentity();

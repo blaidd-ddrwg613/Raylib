@@ -57,7 +57,7 @@
 *
 *   DEPENDENCIES:
 *       raymath  - 3D math functionality (Vector2, Vector3, Matrix, Quaternion)
-*       camera   - Multiple 3D camera modes (free, orbital, 1st person, 3rd person)
+*       Camera   - Multiple 3D Camera modes (free, orbital, 1st person, 3rd person)
 *       gestures - Gestures system for touch-ready devices (or simulated from mouse inputs)
 *
 *
@@ -935,21 +935,21 @@ void EndDrawing(void)
     CORE.Time.frameCounter++;
 }
 
-// Initialize 2D mode with custom camera (2D)
+// Initialize 2D mode with custom Camera (2D)
 void BeginMode2D(Camera2D camera)
 {
     rlDrawRenderBatchActive();      // Update and draw internal render batch
 
     rlLoadIdentity();               // Reset current matrix (modelview)
 
-    // Apply 2d camera transformation to modelview
+    // Apply 2d Camera transformation to modelview
     rlMultMatrixf(MatrixToFloat(GetCameraMatrix2D(camera)));
 
     // Apply screen scaling if required
     rlMultMatrixf(MatrixToFloat(CORE.Window.screenScale));
 }
 
-// Ends 2D mode with custom camera
+// Ends 2D mode with custom Camera
 void EndMode2D(void)
 {
     rlDrawRenderBatchActive();      // Update and draw internal render batch
@@ -958,7 +958,7 @@ void EndMode2D(void)
     rlMultMatrixf(MatrixToFloat(CORE.Window.screenScale)); // Apply screen scaling if required
 }
 
-// Initializes 3D mode with custom camera (3D)
+// Initializes 3D mode with custom Camera (3D)
 void BeginMode3D(Camera camera)
 {
     rlDrawRenderBatchActive();      // Update and draw internal render batch
@@ -992,7 +992,7 @@ void BeginMode3D(Camera camera)
 
     // Setup Camera view
     Matrix matView = MatrixLookAt(camera.position, camera.target, camera.up);
-    rlMultMatrixf(MatrixToFloat(matView));      // Multiply modelview matrix by view matrix (camera)
+    rlMultMatrixf(MatrixToFloat(matView));      // Multiply modelview matrix by view matrix (Camera)
 
     rlEnableDepthTest();            // Enable DEPTH_TEST for 3D
 }
@@ -1181,17 +1181,17 @@ VrStereoConfig LoadVrStereoConfig(VrDeviceInfo device)
         float fovy = 2.0f*atan2f(device.vScreenSize*0.5f*distortionScale, device.eyeToScreenDistance);     // Really need distortionScale?
        // float fovy = 2.0f*(float)atan2f(device.vScreenSize*0.5f, device.eyeToScreenDistance);
 
-        // Compute camera projection matrices
+        // Compute Camera projection matrices
         float projOffset = 4.0f*lensShift;      // Scaled to projection space coordinates [-1..1]
         Matrix proj = MatrixPerspective(fovy, aspect, RL_CULL_DISTANCE_NEAR, RL_CULL_DISTANCE_FAR);
 
         config.projection[0] = MatrixMultiply(proj, MatrixTranslate(projOffset, 0.0f, 0.0f));
         config.projection[1] = MatrixMultiply(proj, MatrixTranslate(-projOffset, 0.0f, 0.0f));
 
-        // Compute camera transformation matrices
+        // Compute Camera transformation matrices
         // NOTE: Camera movement might seem more natural if we model the head.
         // Our axis of rotation is the base of our head, so we might want to add
-        // some y (base of head to eye level) and -z (center of head to eye protrusion) to the camera positions.
+        // some y (base of head to eye level) and -z (center of head to eye protrusion) to the Camera positions.
         config.viewOffset[0] = MatrixTranslate(-device.interpupillaryDistance*0.5f, 0.075f, 0.045f);
         config.viewOffset[1] = MatrixTranslate(device.interpupillaryDistance*0.5f, 0.075f, 0.045f);
 
@@ -1406,7 +1406,7 @@ Ray GetMouseRay(Vector2 mouse, Camera camera)
     // Store values in a vector
     Vector3 deviceCoords = { x, y, z };
 
-    // Calculate view matrix from camera look at
+    // Calculate view matrix from Camera look at
     Matrix matView = MatrixLookAt(camera.position, camera.target, camera.up);
 
     Matrix matProj = MatrixIdentity();
@@ -1432,7 +1432,7 @@ Ray GetMouseRay(Vector2 mouse, Camera camera)
 
     // Unproject the mouse cursor in the near plane.
     // We need this as the source position because orthographic projects, compared to perspective doesn't have a
-    // convergence point, meaning that the "eye" of the camera is more like a plane than a point.
+    // convergence point, meaning that the "eye" of the Camera is more like a plane than a point.
     Vector3 cameraPlanePointerPos = Vector3Unproject((Vector3){ deviceCoords.x, deviceCoords.y, -1.0f }, matProj, matView);
 
     // Calculate normalized direction vector
@@ -1447,26 +1447,26 @@ Ray GetMouseRay(Vector2 mouse, Camera camera)
     return ray;
 }
 
-// Get transform matrix for camera
+// Get transform matrix for Camera
 Matrix GetCameraMatrix(Camera camera)
 {
     return MatrixLookAt(camera.position, camera.target, camera.up);
 }
 
-// Get camera 2d transform matrix
+// Get Camera 2d transform matrix
 Matrix GetCameraMatrix2D(Camera2D camera)
 {
     Matrix matTransform = { 0 };
-    // The camera in world-space is set by
+    // The Camera in world-space is set by
     //   1. Move it to target
     //   2. Rotate by -rotation and scale by (1/zoom)
-    //      When setting higher scale, it's more intuitive for the world to become bigger (= camera become smaller),
-    //      not for the camera getting bigger, hence the invert. Same deal with rotation.
+    //      When setting higher scale, it's more intuitive for the world to become bigger (= Camera become smaller),
+    //      not for the Camera getting bigger, hence the invert. Same deal with rotation.
     //   3. Move it by (-offset);
-    //      Offset defines target transform relative to screen, but since we're effectively "moving" screen (camera)
+    //      Offset defines target transform relative to screen, but since we're effectively "moving" screen (Camera)
     //      we need to do it into opposite direction (inverse transform)
 
-    // Having camera transform in world-space, inverse of it gives the modelview transform.
+    // Having Camera transform in world-space, inverse of it gives the modelview transform.
     // Since (A*B*C)' = C'*B'*A', the modelview is
     //   1. Move to offset
     //   2. Rotate and Scale
@@ -1510,7 +1510,7 @@ Vector2 GetWorldToScreenEx(Vector3 position, Camera camera, int width, int heigh
         matProj = MatrixOrtho(-right, right, -top, top, RL_CULL_DISTANCE_NEAR, RL_CULL_DISTANCE_FAR);
     }
 
-    // Calculate view matrix from camera look at (and transpose it)
+    // Calculate view matrix from Camera look at (and transpose it)
     Matrix matView = MatrixLookAt(camera.position, camera.target, camera.up);
 
     // TODO: Why not use Vector3Transform(Vector3 v, Matrix mat)?
@@ -1533,7 +1533,7 @@ Vector2 GetWorldToScreenEx(Vector3 position, Camera camera, int width, int heigh
     return screenPosition;
 }
 
-// Get the screen space position for a 2d camera world space position
+// Get the screen space position for a 2d Camera world space position
 Vector2 GetWorldToScreen2D(Vector2 position, Camera2D camera)
 {
     Matrix matCamera = GetCameraMatrix2D(camera);
@@ -1542,7 +1542,7 @@ Vector2 GetWorldToScreen2D(Vector2 position, Camera2D camera)
     return (Vector2){ transform.x, transform.y };
 }
 
-// Get the world space position for a 2d camera screen space position
+// Get the world space position for a 2d Camera screen space position
 Vector2 GetScreenToWorld2D(Vector2 position, Camera2D camera)
 {
     Matrix invMatCamera = MatrixInvert(GetCameraMatrix2D(camera));

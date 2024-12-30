@@ -70,10 +70,10 @@
 //   nbsample specify the number of stereo 16bits samples you want.
 //   The output format is by default signed 48000Hz 16-bit Stereo PCM samples, otherwise it is changed with jar_mod_setcfg().
 //   The output buffer size in bytes must be equal to ( nbsample * 2 * channels ).
-//   The optional trkbuf parameter can be used to get detailed status of the player. Put NULL/0 is unused.
+//   The optional trkbuf parameter can be used to get detailed status of the Player. Put NULL/0 is unused.
 // -------------------------------------------
 // void jar_mod_unload( jar_mod_context_t * modctx )
-// - "Unload" / clear the player status.
+// - "Unload" / clear the Player status.
 // -------------------------------------------
 ///////////////////////////////////////////////////////////////////////////////////
 

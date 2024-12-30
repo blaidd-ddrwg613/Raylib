@@ -1,99 +1,49 @@
-#include "raylib.h"
 #include <iostream>
 
-#pragma region imgui
-#include "imgui.h"
-#include "rlImGui.h"
-#include "imguiThemes.h"
-#pragma endregion
+#include "PlayerCamera.h"
+#include "Player.h"
 
-
-
+const int screenWidth = 1200;
+const int screenHeight = 900;
+const char* screenTitle = "Raylib Test";
+const char* text = "First Raylib Window";
 
 int main(void)
 {
+    InitWindow(screenWidth, screenHeight, screenTitle);
 
-	SetConfigFlags(FLAG_WINDOW_RESIZABLE);
-	InitWindow(800, 450, "raylib [core] example - basic window");
+    Player player;
+    player.pos = (Vector2) {screenWidth / 2, screenHeight / 2};
+    player.speed = 350;
 
-#pragma region imgui
-	rlImGuiSetup(true);
-
-	//you can use whatever imgui theme you like!
-	//ImGui::StyleColorsDark();
-	//imguiThemes::yellow();
-	//imguiThemes::gray();
-	imguiThemes::green();
-	//imguiThemes::red();
-	//imguiThemes::embraceTheDarkness();
+    PlayerCamera camera(player, screenWidth, screenHeight);
 
 
-	ImGuiIO &io = ImGui::GetIO(); (void)io;
-	io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;       // Enable Keyboard Controls
-	io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;           // Enable Docking
-	io.FontGlobalScale = 2;
+    SetTargetFPS(60);
+    while (!WindowShouldClose()) {
+        float deltaTime = GetFrameTime();
+        player.UpdatePlayer(deltaTime);
 
-	ImGuiStyle &style = ImGui::GetStyle();
-	if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
-	{
-		//style.WindowRounding = 0.0f;
-		style.Colors[ImGuiCol_WindowBg].w = 0.5f;
-		//style.Colors[ImGuiCol_DockingEmptyBg].w = 0.f;
-	}
+        camera.UpdateCameraCenter(&player,deltaTime,screenWidth, screenHeight);
+        camera.UpdateCameraCenterInsideMap(&player,deltaTime,screenWidth, screenHeight);
+        camera.UpdateCameraCenterSmoothFollow(&player,deltaTime,screenWidth, screenHeight);
+        camera.UpdateCameraPlayerBoundsPush(&player,deltaTime,screenWidth, screenHeight);
 
-#pragma endregion
+        BeginDrawing();
 
+        ClearBackground(RAYWHITE);
 
+        BeginMode2D(camera.GetCamera());
 
-	while (!WindowShouldClose())
-	{
-		BeginDrawing();
-		ClearBackground(RAYWHITE);
+        DrawRectangle(50,50,100,50,BLACK);
 
+        player.DrawPlayer();
 
-	#pragma region imgui
-		rlImGuiBegin();
+        EndMode2D();
 
-		ImGui::PushStyleColor(ImGuiCol_WindowBg, {});
-		ImGui::PushStyleColor(ImGuiCol_DockingEmptyBg, {});
-		ImGui::DockSpaceOverViewport(ImGui::GetMainViewport());
-		ImGui::PopStyleColor(2);
-	#pragma endregion
+        EndDrawing();
+    }
 
-
-		ImGui::Begin("Test");
-
-		ImGui::Text("Hello");
-		ImGui::Button("Button");
-		ImGui::Button("Button2");
-
-		ImGui::End();
-
-
-		DrawText("Congrats! You created your first window!", 190, 200, 20, LIGHTGRAY);
-
-
-	#pragma region imgui
-		rlImGuiEnd();
-
-		if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
-		{
-			ImGui::UpdatePlatformWindows();
-			ImGui::RenderPlatformWindowsDefault();
-		}
-	#pragma endregion
-
-		EndDrawing();
-	}
-
-
-#pragma region imgui
-	rlImGuiShutdown();
-#pragma endregion
-
-
-
-	CloseWindow();
-
-	return 0;
+    CloseWindow();
+    return 0;
 }

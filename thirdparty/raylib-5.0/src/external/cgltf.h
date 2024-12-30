@@ -5487,7 +5487,7 @@ static int cgltf_parse_json_node(cgltf_options* options, jsmntok_t const* tokens
 			out_node->skin = CGLTF_PTRINDEX(cgltf_skin, cgltf_json_to_int(tokens + i, json_chunk));
 			++i;
 		}
-		else if (cgltf_json_strcmp(tokens+i, json_chunk, "camera") == 0)
+		else if (cgltf_json_strcmp(tokens+i, json_chunk, "Camera") == 0)
 		{
 			++i;
 			CGLTF_CHECK_TOKTYPE(tokens[i], JSMN_PRIMITIVE);
