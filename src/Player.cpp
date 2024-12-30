@@ -2,19 +2,18 @@
 
 void Player::UpdatePlayer(float delta)
 {
-    if (IsKeyDown(KEY_UP) || IsKeyDown(KEY_W))
-    {
+    if (IsKeyDown(IsKeyDown(KEY_W))) {
         this->pos.y -= this->speed * delta;
     }
-    if (IsKeyDown(KEY_DOWN) || IsKeyDown(KEY_S))
+    if (IsKeyDown(IsKeyDown(KEY_S)))
     {
         this->pos.y += this->speed * delta;
     }
-    if (IsKeyDown(KEY_LEFT) || IsKeyDown(KEY_A))
+    if (IsKeyDown(IsKeyDown(KEY_A)))
     {
         this->pos.x -= this->speed * delta;
     }
-    if (IsKeyDown(KEY_RIGHT) || IsKeyDown(KEY_D))
+    if (IsKeyDown(IsKeyDown(KEY_D)))
     {
         this->pos.x += this->speed * delta;
     }

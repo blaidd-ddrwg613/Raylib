@@ -7,7 +7,7 @@ PlayerCamera::PlayerCamera(Player player, int screenWidth, int screenHeight) {
     camera.target = player.pos;
     camera.offset = (Vector2){ screenWidth/2.0f, screenHeight/2.0f };
     camera.rotation = 0.0f;
-    camera.zoom = 1.0f;
+    camera.zoom = 1.5f;
 
 }
 
