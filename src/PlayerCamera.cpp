@@ -65,6 +65,14 @@ void PlayerCamera::UpdateCameraPlayerBoundsPush(Player *player, float delta, int
     if (player->pos.y > bboxWorldMax.y) camera.target.y = bboxWorldMin.y + (player->pos.y - bboxWorldMax.y);
 }
 
+void PlayerCamera::UpdateCamera(Player player, float deltaTime, int screenWidth, int screenHeight)
+{
+    UpdateCameraCenter(&player,deltaTime,screenWidth, screenHeight);
+    UpdateCameraCenterInsideMap(&player,deltaTime,screenWidth, screenHeight);
+    UpdateCameraCenterSmoothFollow(&player,deltaTime,screenWidth, screenHeight);
+    UpdateCameraPlayerBoundsPush(&player,deltaTime,screenWidth, screenHeight);
+}
+
 float PlayerCamera::GetZoom()
 {
     return camera.zoom;

@@ -60,6 +60,14 @@ build CMakeFiles/raylibGame.dir/src/PlayerCamera.cpp.obj: CXX_COMPILER__raylibGa
   OBJECT_DIR = CMakeFiles\raylibGame.dir
   OBJECT_FILE_DIR = CMakeFiles\raylibGame.dir\src
 
+build CMakeFiles/raylibGame.dir/src/Setup.cpp.obj: CXX_COMPILER__raylibGame_unscanned_ C$:/Code/Raylib/src/Setup.cpp || cmake_object_order_depends_target_raylibGame
+  DEFINES = -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP -DPRODUCTION_BUILD=0 -DRESOURCES_PATH=\"C:/Code/Raylib/resources/\"
+  DEP_FILE = CMakeFiles\raylibGame.dir\src\Setup.cpp.obj.d
+  FLAGS = -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -IC:/Code/Raylib/include -IC:/Code/Raylib/thirdparty/raylib-5.0/src -IC:/Code/Raylib/thirdparty/raylib-5.0/src/external/glfw/include -IC:/Code/Raylib/thirdparty/imgui-docking/imgui -IC:/Code/Raylib/thirdparty/rlImGui
+  OBJECT_DIR = CMakeFiles\raylibGame.dir
+  OBJECT_FILE_DIR = CMakeFiles\raylibGame.dir\src
+
 build CMakeFiles/raylibGame.dir/src/main.cpp.obj: CXX_COMPILER__raylibGame_unscanned_ C$:/Code/Raylib/src/main.cpp || cmake_object_order_depends_target_raylibGame
   DEFINES = -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP -DPRODUCTION_BUILD=0 -DRESOURCES_PATH=\"C:/Code/Raylib/resources/\"
   DEP_FILE = CMakeFiles\raylibGame.dir\src\main.cpp.obj.d
@@ -76,7 +84,7 @@ build CMakeFiles/raylibGame.dir/src/main.cpp.obj: CXX_COMPILER__raylibGame_unsca
 #############################################
 # Link the executable raylibGame.exe
 
-build raylibGame.exe: CXX_EXECUTABLE_LINKER__raylibGame_ CMakeFiles/raylibGame.dir/src/Player.cpp.obj CMakeFiles/raylibGame.dir/src/PlayerCamera.cpp.obj CMakeFiles/raylibGame.dir/src/main.cpp.obj | thirdparty/raylib-5.0/raylib/libraylib.a thirdparty/imgui-docking/libimgui.a thirdparty/rlImGui/librlimgui.a thirdparty/imgui-docking/libimgui.a thirdparty/raylib-5.0/raylib/libraylib.a thirdparty/raylib-5.0/raylib/external/glfw/src/libglfw3.a || thirdparty/imgui-docking/libimgui.a thirdparty/raylib-5.0/raylib/external/glfw/src/libglfw3.a thirdparty/raylib-5.0/raylib/libraylib.a thirdparty/rlImGui/librlimgui.a
+build raylibGame.exe: CXX_EXECUTABLE_LINKER__raylibGame_ CMakeFiles/raylibGame.dir/src/Player.cpp.obj CMakeFiles/raylibGame.dir/src/PlayerCamera.cpp.obj CMakeFiles/raylibGame.dir/src/Setup.cpp.obj CMakeFiles/raylibGame.dir/src/main.cpp.obj | thirdparty/raylib-5.0/raylib/libraylib.a thirdparty/imgui-docking/libimgui.a thirdparty/rlImGui/librlimgui.a thirdparty/imgui-docking/libimgui.a thirdparty/raylib-5.0/raylib/libraylib.a thirdparty/raylib-5.0/raylib/external/glfw/src/libglfw3.a || thirdparty/imgui-docking/libimgui.a thirdparty/raylib-5.0/raylib/external/glfw/src/libglfw3.a thirdparty/raylib-5.0/raylib/libraylib.a thirdparty/rlImGui/librlimgui.a
   LINK_LIBRARIES = thirdparty/raylib-5.0/raylib/libraylib.a  thirdparty/imgui-docking/libimgui.a  thirdparty/rlImGui/librlimgui.a  thirdparty/imgui-docking/libimgui.a  thirdparty/raylib-5.0/raylib/libraylib.a  -lopengl32  -lglu32  -lwinmm  thirdparty/raylib-5.0/raylib/external/glfw/src/libglfw3.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\raylibGame.dir
   POST_BUILD = cd .

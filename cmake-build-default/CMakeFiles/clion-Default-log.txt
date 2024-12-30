@@ -15,6 +15,6 @@ CMake Warning at thirdparty/raylib-5.0/src/CMakeLists.txt:14 (message):
 -- Compiling with the flags:
 --   PLATFORM=PLATFORM_DESKTOP
 --   GRAPHICS=GRAPHICS_API_OPENGL_33
--- Configuring done (0.3s)
--- Generating done (0.2s)
+-- Configuring done (1.0s)
+-- Generating done (0.1s)
 -- Build files have been written to: C:/Code/Raylib/cmake-build-default

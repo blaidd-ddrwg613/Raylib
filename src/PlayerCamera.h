@@ -15,6 +15,7 @@ public:
     void SetZoom(float zoom);
     void AddZoom(float zoom);
     Camera2D GetCamera();
+    void UpdateCamera(Player player,float deltaTime, int screenWidth, int screenHeight);
 private:
     Camera2D camera;
 };

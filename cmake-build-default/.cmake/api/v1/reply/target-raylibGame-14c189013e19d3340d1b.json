@@ -147,7 +147,8 @@
 			[
 				0,
 				1,
-				2
+				2,
+				3
 			]
 		}
 	],
@@ -246,7 +247,8 @@
 			[
 				0,
 				1,
-				2
+				2,
+				3
 			]
 		}
 	],
@@ -262,6 +264,12 @@
 			"backtrace" : 9,
 			"compileGroupIndex" : 0,
 			"path" : "src/PlayerCamera.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 9,
+			"compileGroupIndex" : 0,
+			"path" : "src/Setup.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{

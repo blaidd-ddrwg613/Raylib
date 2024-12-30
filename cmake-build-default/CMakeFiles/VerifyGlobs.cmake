@@ -7,6 +7,7 @@ file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "C:/Code/Raylib/src/*.cpp")
 set(OLD_GLOB
   "C:/Code/Raylib/src/Player.cpp"
   "C:/Code/Raylib/src/PlayerCamera.cpp"
+  "C:/Code/Raylib/src/Setup.cpp"
   "C:/Code/Raylib/src/main.cpp"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
